@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="sign-ssm:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="sign-ssm.war">
-      <element id="artifact" artifact-name="sign-ssm:war exploded" />
-    </root>
-  </artifact>
-</component>
