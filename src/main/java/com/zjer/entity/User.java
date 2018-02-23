@@ -10,15 +10,15 @@ import java.sql.Timestamp;
 public class User implements Serializable {
     private Integer id;
     private String name;
-    private String password;
+    private String pass;
     private Timestamp enrolldate;
 
     public User() {}
 
-    public User(Integer id, String name, String password, Timestamp enrolldate) {
+    public User(Integer id, String name, String pass, Timestamp enrolldate) {
         this.id = id;
         this.name = name;
-        this.password = password;
+        this.pass = pass;
         this.enrolldate = enrolldate;
     }
 
@@ -38,12 +38,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public Timestamp getEnrolldate() {
@@ -59,7 +59,7 @@ public class User implements Serializable {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
+                ", pass='" + pass + '\'' +
                 ", enrolldate=" + enrolldate +
                 '}';
     }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zjer.dao.UserDao">
+    <resultMap type="com.zjer.entity.User" id="UserResult">
+        <result column="user_id" property="id" />
+        <result column="user_name" property="name" />
+        <result column="user_pass" property="pass" />
+        <result column="user_time" property="enrolldate" />
+    </resultMap>
+    <!-- 查询 -->
+    <select id="find" parameterType="map" resultMap="UserResult">
+        select * from user
+        where 1=1
+        <if test="state!=null"> and STATE=#{state}</if>
+    </select>
+    <!-- 查询一个 -->
+    <select id="get" parameterType="string" resultMap="UserResult">
+        select * from user
+        where user_id=#{id}
+    </select>
+    <!-- 判断用户名是否存在 -->
+    <select id="findByName" parameterType="string" resultType="int">
+        select count(*) from user
+        where user_name=#{name}
+    </select>
+    <!-- 验证用户名和密码是否存在 -->
+    <select id="findByNameAndPass" parameterType="string" resultType="int">
+        select count(*) from user
+        where user_name=#{name} AND user_pass=#{pass}
+    </select>
+    <!--新增-->
+    <insert id="insert" parameterType="com.entities.User">
+        insert into user (user_id,user_name,user_pass,user_time)
+        VALUES (#{id},#{name},#{pass},#{enrolldate})
+    </insert>
+    <!--修改 动态SQL语句-->
+    <update id="update" parameterType="com.entities.User">
+        update user
+        <set>
+            <if test="name != null">user_name=#{name, jdbcType=VARCHAR}</if>
+            <if test="pass != null">user_pass=#{pass, jdbcType=VARCHAR}</if>
+        </set>
+        where user_id=#{id}
+    </update>
+    <!-- 删除一条 -->
+    <delete id="deleteById" parameterType="string">
+        delete from user
+        where user_id=#{id}
+    </delete>
+    <!-- 删除多条（一维字符串数组） -->
+    <delete id="delete" parameterType="string">
+        delete from user
+        where user_id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
