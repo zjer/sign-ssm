@@ -10,7 +10,7 @@ import com.zjer.entity.User;
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
     public UserDaoImpl() {
         //设置命名空间
-        super.setNs("com.dao.UserDao");
+        super.setNs("com.zjer.dao.UserDao");
     }
 
     @Override
